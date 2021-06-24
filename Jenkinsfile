@@ -6,6 +6,11 @@ pipeline {
     stages{
         stage("Build") {
             steps{
+                sh script: 'mvn clean package'
+            }
+        }
+        stage("Upload war to Nexus") {
+            steps{
                 nexusArtifactUploader artifacts: [
                     [
                         artifactId: 'simple-app',
